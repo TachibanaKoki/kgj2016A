@@ -16,22 +16,22 @@ public class Move : MonoBehaviour {
 
         if (Input.GetKey("up"))
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.Translate(-transform.forward * 0.1f);
         }
         if (Input.GetKey("down"))
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.Translate(transform.forward * 0.1f);
         }
         if (Input.GetKey("right"))
         {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.Euler(0, 270, 0);
             transform.Translate(transform.right * 0.1f);
         }
         if (Input.GetKey("left"))
         {
-            transform.rotation = Quaternion.Euler(0, 270, 0);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             transform.Translate(-transform.right * 0.1f);
         }
     }
