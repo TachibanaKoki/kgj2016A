@@ -43,16 +43,24 @@ namespace UnityChan
 		void  Update ()
 		{
 			// ↑キー/スペースが押されたら、ステートを次に送る処理
-			if (Input.GetKeyDown ("up") || Input.GetButton ("Jump")) {
+			if (Input.GetKey ("up") || Input.GetButton ("Jump")
+                || Input.GetKey("down")
+                || Input.GetKey ("right")
+                || Input.GetKey("left")) {
 				// ブーリアンNextをtrueにする
 				anim.SetBool ("Next", true);
+                //anim.Play("Runnning@loop");
 			}
+            else
+            {
+                anim.SetBool("Back", true);
+            }
 		
 			// ↓キーが押されたら、ステートを前に戻す処理
-			if (Input.GetKeyDown ("down")) {
-				// ブーリアンBackをtrueにする
-				anim.SetBool ("Back", true);
-			}
+			//if (Input.GetKeyDown ("down")) {
+			//	// ブーリアンBackをtrueにする
+			//	anim.SetBool ("Back", true);
+			//}
 		
 			// "Next"フラグがtrueの時の処理
 			if (anim.GetBool ("Next")) {

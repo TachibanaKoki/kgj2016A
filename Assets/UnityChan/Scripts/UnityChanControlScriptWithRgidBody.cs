@@ -51,6 +51,8 @@ namespace UnityChan
 		static int jumpState = Animator.StringToHash ("Base Layer.Jump");
 		static int restState = Animator.StringToHash ("Base Layer.Rest");
 
+        private int rotation;
+
 		// 初期化
 		void Start ()
 		{
@@ -81,15 +83,27 @@ namespace UnityChan
 		
 		
 			// 以下、キャラクターの移動処理
-			velocity = new Vector3 (0, 0, v);		// 上下のキー入力からZ軸方向の移動量を取得
+			velocity = new Vector3 (h, 0, v);		// 上下のキー入力からZ軸方向の移動量を取得
 			// キャラクターのローカル空間での方向に変換
 			velocity = transform.TransformDirection (velocity);
 			//以下のvの閾値は、Mecanim側のトランジションと一緒に調整する
 			if (v > 0.1) {
 				velocity *= forwardSpeed;		// 移動速度を掛ける
+                rotation = 0;
 			} else if (v < -0.1) {
-				velocity *= backwardSpeed;	// 移動速度を掛ける
+				velocity *= forwardSpeed;	// 移動速度を掛ける
+                rotation = 10;
 			}
+
+            if(h > 0.1)
+            {
+                velocity *= forwardSpeed;
+                rotation = 2;
+            }else if(h < -0.1)
+            {
+                velocity *= forwardSpeed;
+                rotation = 2;
+            }
 		
 			if (Input.GetButtonDown ("Jump")) {	// スペースキーを入力したら
 
@@ -107,14 +121,16 @@ namespace UnityChan
 			// 上下のキー入力でキャラクターを移動させる
 			transform.localPosition += velocity * Time.fixedDeltaTime;
 
-			// 左右のキー入力でキャラクタをY軸で旋回させる
-			transform.Rotate (0, h * rotateSpeed, 0);	
-	
+            // 左右のキー入力でキャラクタをY軸で旋回させる
+            //transform.Rotate (0, h * rotateSpeed, 0);
+            transform.Rotate(0, rotation, 0);
+            //transform.localPosition += velocity * Time.fixedDeltaTime;
 
-			// 以下、Animatorの各ステート中での処理
-			// Locomotion中
-			// 現在のベースレイヤーがlocoStateの時
-			if (currentBaseState.fullPathHash == locoState) {
+
+            // 以下、Animatorの各ステート中での処理
+            // Locomotion中
+            // 現在のベースレイヤーがlocoStateの時
+            if (currentBaseState.fullPathHash == locoState) {
 				//カーブでコライダ調整をしている時は、念のためにリセットする
 				if (useCurves) {
 					resetCollider ();
