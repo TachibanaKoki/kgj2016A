@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9ce26ee8f186d104bb4ba55bcb76229f
-timeCreated: 1487403613
+guid: 880cb26d060960c40a43297b035c97d9
+timeCreated: 1487407838
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -13,14 +13,6 @@ ModelImporter:
     100010: pSphere5
     100012: pSphere6
     100014: pSphere7
-    100016: pSphere8
-    100018: transform1
-    100020: transform2
-    100022: transform3
-    100024: transform4
-    100026: transform5
-    100028: transform6
-    100030: transform7
     400000: //RootNode
     400002: pCylinder1
     400004: pSphere1
@@ -29,17 +21,27 @@ ModelImporter:
     400010: pSphere5
     400012: pSphere6
     400014: pSphere7
-    400016: pSphere8
-    400018: transform1
-    400020: transform2
-    400022: transform3
-    400024: transform4
-    400026: transform5
-    400028: transform6
-    400030: transform7
-    2300000: pSphere8
-    3300000: pSphere8
-    4300000: pSphere8
+    2300000: pCylinder1
+    2300002: pSphere1
+    2300004: pSphere3
+    2300006: pSphere4
+    2300008: pSphere5
+    2300010: pSphere6
+    2300012: pSphere7
+    3300000: pCylinder1
+    3300002: pSphere1
+    3300004: pSphere3
+    3300006: pSphere4
+    3300008: pSphere5
+    3300010: pSphere6
+    3300012: pSphere7
+    4300000: pSphere1
+    4300002: pCylinder1
+    4300004: pSphere3
+    4300006: pSphere4
+    4300008: pSphere5
+    4300010: pSphere6
+    4300012: pSphere7
   materials:
     importMaterials: 1
     materialName: 0
