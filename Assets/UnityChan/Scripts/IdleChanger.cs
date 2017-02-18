@@ -49,10 +49,13 @@ namespace UnityChan
                 || Input.GetKey("left")) {
 				// ブーリアンNextをtrueにする
 				anim.SetBool ("Next", true);
+                anim.SetBool("Back", false);
                 //anim.Play("Runnning@loop");
 			}
             else
             {
+                //anim.P("Standing@loop");
+                anim.SetBool("Next", false);
                 anim.SetBool("Back", true);
             }
 		
