@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         //    accelarationCount = 0;
 
         //入力方向に向く
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (Math.Abs(Input.GetAxis("Horizontal")) > 0.01 || Math.Abs(Input.GetAxis("Vertical")) > 0.01)
         {
             //        transform.rotation = Quaternion.LookRotation(transform.position +
             //(Vector3.right * Input.GetAxisRaw("Horizontal")) +
@@ -71,8 +71,30 @@ public class Player : MonoBehaviour
         else
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.localEulerAngles.y, 0));
         //入力してないときに勝手に回転,移動するのを防ぐ
+
+       // Debug.Log(ForceMode.Acceleration.ToString());
+
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+        Debug.Log(rigidbody.velocity.x);
         
-            
+        //加速度を毎回減速する
+
+
+        //加速度が低いと加速度を消す
+        if (Math.Abs(rigidbody.velocity.x) < 1 && Math.Abs(rigidbody.velocity.z) < 1)
+        {
+           // GetComponent<Rigidbody>().AddForce(vec * 10, ForceMode.Acceleration);
+            rigidbody.AddForce(Vector3.zero, ForceMode.Force);
+            rigidbody.freezeRotation = true;
+
+        }
+        else
+            rigidbody.freezeRotation = true;
+
+
+
+
             Vector3 pos = transform.position;
             pos.y = 0;
         transform.position = pos;
