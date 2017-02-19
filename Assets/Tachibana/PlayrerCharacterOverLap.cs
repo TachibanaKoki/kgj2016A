@@ -13,7 +13,7 @@ public class PlayrerCharacterOverLap : MonoBehaviour
         {
             TransitionManager.I.FadeOut(1.0f);
             GameData.WinnerIsIron = true;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Iron");
         }
 
         if (col.gameObject.tag == "Goal")
@@ -25,14 +25,14 @@ public class PlayrerCharacterOverLap : MonoBehaviour
             {
                 TransitionManager.I.FadeOut(1.0f);
                 GameData.WinnerIsIron = false;
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Darty");
                 LastParticles();
             }
             else
             {
-               // PlayParticles();
-                //LastParticles();
-                FireParticle();
+                PlayParticles();
+               // LastParticles();
+              //  FireParticle();
             }
         }
     }
@@ -42,8 +42,7 @@ public class PlayrerCharacterOverLap : MonoBehaviour
 
     public GameObject blackParticle;
     public GameObject lastStartParticle;
-    public GameObject fireParticle;
-
+  
     void PlayParticles()
     {
         Instantiate(blackParticle, new Vector3(this.transform.position.x, this.transform.position.y+1, this.transform.position.z), Quaternion.identity);
@@ -54,8 +53,5 @@ public class PlayrerCharacterOverLap : MonoBehaviour
         Instantiate(lastStartParticle, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), Quaternion.identity);
     }
 
-    void FireParticle()
-    {
-        Instantiate(fireParticle, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-    }
+
 }
