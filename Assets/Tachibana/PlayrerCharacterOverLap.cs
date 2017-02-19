@@ -9,24 +9,37 @@ public class PlayrerCharacterOverLap : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             TransitionManager.I.FadeOut(1.0f);
             GameData.WinnerIsIron = true;
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
         }
-        
-        if(col.gameObject.tag == "Goal")
+
+        if (col.gameObject.tag == "Goal")
         {
             NowNumber++;
             Destroy(col.gameObject);
 
-            if(NowNumber==GoalNumber)
+            if (NowNumber == GoalNumber)
             {
-            TransitionManager.I.FadeOut(1.0f);
-            GameData.WinnerIsIron = false;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+                TransitionManager.I.FadeOut(1.0f);
+                GameData.WinnerIsIron = false;
+                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+            }
+            else
+            {
+                PlayParticles();
             }
         }
     }
+    public GameObject blackParticle;
+    //パーティクル
+    void PlayParticles()
+    {
+        Instantiate(blackParticle, new Vector3(this.transform.position.x, this.transform.position.y+1, this.transform.position.z), Quaternion.identity);
+    }
+
+
+
 }

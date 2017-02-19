@@ -106,4 +106,16 @@ public class Player : MonoBehaviour
         GetComponent<Rigidbody>().velocity *= 0.5f;
     }
 
+
+
+    void OnCollisionEnter(Collision col)
+    {
+    
+        if (col.gameObject.tag == "Goal")
+        {
+            GetComponent<Rigidbody>().velocity *= 0.5f;
+           
+        }
+    }
+
 }
