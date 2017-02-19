@@ -24,7 +24,7 @@ public class DummyMove4 : MonoBehaviour
     void FixedUpdate()
     {
 
-        angle += 0.1f;
+        angle += Time.deltaTime * 10;
         //if (angle >= 180)
         //    angle = 0;
 

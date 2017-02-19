@@ -41,7 +41,8 @@ public class DummyMove : MonoBehaviour {
         }
         else
         {
-            transform.Translate(-transform.forward * 0.05f);
+            transform.rotation = Quaternion.Euler(0, 45, 0);
+            transform.Translate(transform.forward * 0.05f);
             transform.Translate(transform.right * 0.05f);
         }
 

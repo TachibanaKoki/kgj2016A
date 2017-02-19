@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DummyMove3 : MonoBehaviour {   
+public class DummyMove5 : MonoBehaviour
+{
     private float angle;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+        transform.localRotation = Quaternion .Euler(0,90,0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         angle += Time.deltaTime * 10;
         //if (angle >= 179)
