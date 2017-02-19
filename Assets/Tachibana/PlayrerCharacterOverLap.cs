@@ -6,9 +6,12 @@ public class PlayrerCharacterOverLap : MonoBehaviour
 {
     private int GoalNumber = 3;
     private int NowNumber = 0;
+    bool isClear = false;
 
     void OnCollisionEnter(Collision col)
     {
+
+        if (isClear) return;
         if (col.gameObject.tag == "Player")
         {
             TransitionManager.I.FadeOut(1.0f);
@@ -20,13 +23,17 @@ public class PlayrerCharacterOverLap : MonoBehaviour
         {
             NowNumber++;
             Destroy(col.gameObject);
-
+            SoundManager.PlayOneShot(AudioClips.GET);
             if (NowNumber == GoalNumber)
             {
-                TransitionManager.I.FadeOut(1.0f);
-                GameData.WinnerIsIron = false;
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Darty");
+                isClear = true;
+                transform.localScale = Vector3.one*2.0f;
                 LastParticles();
+                StartCoroutine(Delay(2.0f,() =>
+                {
+                    TransitionManager.I.FadeOut(1.0f,()=>{   UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Darty");});
+                    GameData.WinnerIsIron = false;
+                }));
             }
             else
             {
@@ -37,6 +44,11 @@ public class PlayrerCharacterOverLap : MonoBehaviour
         }
     }
 
+    IEnumerator Delay(float duration,System.Action callback)
+    {
+        yield return new WaitForSeconds(duration);
+        callback.Invoke();
+    }
 
     //パーティクル
 

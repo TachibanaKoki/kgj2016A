@@ -16,7 +16,7 @@ public class ResultManager : MonoBehaviour {
         }
         else
         {
-            text.text = "ダーティーちゃん";
+            text.text = "Dirty-Chan";
         }
 	}
 	
