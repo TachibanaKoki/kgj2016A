@@ -29,8 +29,10 @@ public class CreateLimitedDummy : MonoBehaviour
     void CreateCharacter()
     {
         float randomWidth;
+        float randomLength;
         randomWidth = Random.Range(-5, 5);
-        createPosition = new Vector3(randomWidth,0,-5);
+        randomLength = Random.Range(-5, 0);
+        createPosition = new Vector3(randomWidth, 0, randomWidth);
 
         Instantiate(chara, createPosition, Quaternion.identity);
         count++;
