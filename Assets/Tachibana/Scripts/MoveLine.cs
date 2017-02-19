@@ -50,13 +50,11 @@ public class MoveLine : MonoBehaviour
         if (DisplacementTexture == null) return;
         AccumulateSnow(col.gameObject.transform.position);
         // テクスチャー更新
-
         if (IsUpdateDisplacementTexture)
         {
             DisplacementTexture.Apply();
             m_Material.SetTexture("_DispTex", DisplacementTexture);
         }
-
     }
 
     /// <summary>

@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour
 {
 
     private Vector2 accelaration;
     private int accelarationCount;
+    private AudioSource m_audioSource;
 
     // Use this for initialization
     void Start()
     {
         accelaration = Vector2.zero;
         accelarationCount = 0;
+        m_audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -21,36 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //accelaration.y += -Input.GetAxis("Vertical") * 0.004f;
-        //accelaration.x += -Input.GetAxis("Horizontal") * 0.004f;
-
-
-        //transform.Translate(new Vector3( accelaration.x, 0, accelaration.y));
-
-        ////加速度の減少
-        //if (Math.Abs(accelaration.x) < 0.001 && Math.Abs(accelaration.y) < 0.001)
-        //{
-        //    accelaration = Vector2.zero;
-        //}
-        //else if (accelarationCount > 100)
-        //{
-        //    accelaration.x /= 1.00f;
-        //    accelaration.y /= 1.00f;
-        //}
-        //else
-        //{
-        //    accelaration.x /= 1.06f;
-        //    accelaration.y /= 1.06f;
-        //}
-        ////        Debug.Log(accelaration.x);
-
-        ////一定時間入力すると加速度が上がる
-        //if (Math.Abs(Input.GetAxis("Horizontal")) > 0.02 || Math.Abs(Input.GetAxis("Vertical")) > 0.02)
-        //{
-        //    accelarationCount++;
-        //}
-        //else
-        //    accelarationCount = 0;
+        Vector2 InputVec = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
 
         //入力方向に向く
         if (Math.Abs(Input.GetAxis("Horizontal")) > 0.01 || Math.Abs(Input.GetAxis("Vertical")) > 0.01)
@@ -65,11 +39,11 @@ public class Player : MonoBehaviour
             Vector3 vec = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, -Input.GetAxisRaw("Vertical"));
 
             GetComponent<Rigidbody>().AddForce(vec * 10, ForceMode.Acceleration);
-
-
         }
         else
+        {
             transform.rotation = Quaternion.Euler(new Vector3(0, transform.localEulerAngles.y, 0));
+        }
         //入力してないときに勝手に回転,移動するのを防ぐ
 
        // Debug.Log(ForceMode.Acceleration.ToString());
@@ -84,29 +58,31 @@ public class Player : MonoBehaviour
         //加速度が低いと加速度を消す
         if (Math.Abs(rigidbody.velocity.x) < 1 && Math.Abs(rigidbody.velocity.z) < 1)
         {
-           // GetComponent<Rigidbody>().AddForce(vec * 10, ForceMode.Acceleration);
+            // GetComponent<Rigidbody>().AddForce(vec * 10, ForceMode.Acceleration);
             rigidbody.AddForce(Vector3.zero, ForceMode.Force);
             rigidbody.freezeRotation = true;
 
         }
         else
+        {
             rigidbody.freezeRotation = true;
+        }
 
-
-
-
-            Vector3 pos = transform.position;
-            pos.y = 0;
+        Vector3 pos = transform.position;
+        pos.y = 0;
         transform.position = pos;
+
+        if(!m_audioSource.isPlaying)
+        {
+            if(Vector2.Dot(InputVec,rigidbody.velocity)<0)
+            {
+                m_audioSource.Play();
+
+            }
+        }
 
     }
  
-    void OnCollisionEnter()
-    {
-        GetComponent<Rigidbody>().velocity *= 0.5f;
-    }
-
-
 
     void OnCollisionEnter(Collision col)
     {
@@ -115,6 +91,12 @@ public class Player : MonoBehaviour
         {
             GetComponent<Rigidbody>().velocity *= 0.5f;
            
+        }
+
+        if(col.gameObject.tag == "Dummy")
+        {
+            SoundManager.PlayOneShot(AudioClips.HIT);
+            Destroy(col.gameObject);
         }
     }
 
