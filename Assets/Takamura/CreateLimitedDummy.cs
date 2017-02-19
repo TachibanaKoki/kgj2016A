@@ -21,7 +21,7 @@ public class CreateLimitedDummy : MonoBehaviour
     } 
 
     // Use this for initialization
-    void Update()
+    void FixedUpdate()
     {
         time += Time.deltaTime;
 
