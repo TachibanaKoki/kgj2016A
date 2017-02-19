@@ -12,11 +12,11 @@ public class ResultManager : MonoBehaviour {
 	void Start () {
 		if(GameData.WinnerIsIron)
         {
-            text.text = "アイロンの勝ち！";
+            text.text = "アイロン";
         }
         else
         {
-            text.text = "ユニティちゃんの勝ち！";
+            text.text = "ダーティーちゃん";
         }
 	}
 	

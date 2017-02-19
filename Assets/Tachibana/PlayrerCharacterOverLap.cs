@@ -13,7 +13,7 @@ public class PlayrerCharacterOverLap : MonoBehaviour
         {
             TransitionManager.I.FadeOut(1.0f);
             GameData.WinnerIsIron = true;
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Iron");
         }
 
         if (col.gameObject.tag == "Goal")
@@ -25,7 +25,7 @@ public class PlayrerCharacterOverLap : MonoBehaviour
             {
                 TransitionManager.I.FadeOut(1.0f);
                 GameData.WinnerIsIron = false;
-                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+                UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("Darty");
                 LastParticles();
             }
             else
