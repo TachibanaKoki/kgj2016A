@@ -22,7 +22,7 @@ public class TitleSceneMove : MonoBehaviour
     {
 		if(Input.GetButtonDown("Fire1"))
         {
-            TransitionManager.I.FadeOut(1.0f, () => { SceneLoad("main"); });
+            TransitionManager.I.FadeOut(1.0f, () => { SceneLoad("Menu"); });
         }
 	}
 
