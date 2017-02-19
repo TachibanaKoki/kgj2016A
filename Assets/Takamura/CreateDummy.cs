@@ -11,8 +11,14 @@ public class CreateDummy : MonoBehaviour {
 
     public Vector3 createPosition;
 
+    void Start()
+    {
+        for (int i = 0; i < 3; i++)
+            CreateCharacter();
+    }
+
     // Use this for initialization
-    void Update()
+    void FixedUpdate()
     {
         time += Time.deltaTime;
         coutTime += Time.deltaTime;

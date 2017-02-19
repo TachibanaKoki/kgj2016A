@@ -14,6 +14,12 @@ public class CreateLimitedDummy : MonoBehaviour
 
     public Vector3 createPosition;
 
+    void Start()
+    {
+        for(int i = 0; i< 3; i++)
+            CreateCharacter();
+    } 
+
     // Use this for initialization
     void Update()
     {
@@ -24,6 +30,17 @@ public class CreateLimitedDummy : MonoBehaviour
             time = 0;
             CreateCharacter();
         }
+    }
+
+    void StartCreateCharacter()
+    {
+        float randomWidth;
+        float randomLength;
+        randomWidth = Random.Range(-5, 5);
+        randomLength = Random.Range(-5, 0);
+        createPosition = new Vector3(randomWidth, 0, randomWidth);
+
+        Instantiate(chara, createPosition, Quaternion.identity);
     }
 
     void CreateCharacter()
