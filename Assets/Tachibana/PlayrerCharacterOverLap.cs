@@ -30,9 +30,9 @@ public class PlayrerCharacterOverLap : MonoBehaviour
             }
             else
             {
-               // PlayParticles();
-                //LastParticles();
-                FireParticle();
+                PlayParticles();
+               // LastParticles();
+              //  FireParticle();
             }
         }
     }

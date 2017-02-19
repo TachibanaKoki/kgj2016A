@@ -93,13 +93,23 @@ public class Player : MonoBehaviour
            
         }
     }
+
+
+    public GameObject fireParticle;
+
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Dummy")
         {
             SoundManager.PlayOneShot(AudioClips.HIT);
             Destroy(col.gameObject);
+
+            FireParticle();
         }
+    }
+    void FireParticle()
+    {
+        Instantiate(fireParticle, new Vector3(this.transform.position.x, this.transform.position.y+1, this.transform.position.z), Quaternion.identity);
     }
 
 }
