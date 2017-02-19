@@ -92,8 +92,10 @@ public class Player : MonoBehaviour
             GetComponent<Rigidbody>().velocity *= 0.5f;
            
         }
-
-        if(col.gameObject.tag == "Dummy")
+    }
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Dummy")
         {
             SoundManager.PlayOneShot(AudioClips.HIT);
             Destroy(col.gameObject);
