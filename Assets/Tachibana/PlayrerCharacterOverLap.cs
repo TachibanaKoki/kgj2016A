@@ -26,20 +26,36 @@ public class PlayrerCharacterOverLap : MonoBehaviour
                 TransitionManager.I.FadeOut(1.0f);
                 GameData.WinnerIsIron = false;
                 UnityEngine.SceneManagement.SceneManager.LoadSceneAsync("result");
+                LastParticles();
             }
             else
             {
-                PlayParticles();
+               // PlayParticles();
+                //LastParticles();
+                FireParticle();
             }
         }
     }
-    public GameObject blackParticle;
+
+
     //パーティクル
+
+    public GameObject blackParticle;
+    public GameObject lastStartParticle;
+    public GameObject fireParticle;
+
     void PlayParticles()
     {
         Instantiate(blackParticle, new Vector3(this.transform.position.x, this.transform.position.y+1, this.transform.position.z), Quaternion.identity);
     }
 
+    void LastParticles()
+    {
+        Instantiate(lastStartParticle, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), Quaternion.identity);
+    }
 
-
+    void FireParticle()
+    {
+        Instantiate(fireParticle, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
+    }
 }
